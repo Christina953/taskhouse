@@ -1,4 +1,4 @@
-# taskhous
+# taskhouse
 
 KTA25 school project for learning agile software development.
 
