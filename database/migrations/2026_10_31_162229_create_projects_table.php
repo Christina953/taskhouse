@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('client_name');
             $table->text('description')->nullable();
+            $table->decimal('budget', 10, 2);
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->string('status')->default('active');
