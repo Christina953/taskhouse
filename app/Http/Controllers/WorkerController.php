@@ -23,7 +23,49 @@ class WorkerController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:workers,name',
             'hourly_rate' => 'required|numeric|min:0|max:9999.99',
-        ], [
+        ], $this->messages());
+
+        Worker::create($validated);
+
+        return redirect()->route('workers.index')->with('success', 'Töömees lisatud.');
+    }
+
+    public function edit(Worker $worker)
+    {
+        return view('workers.edit', ['worker' => $worker]);
+    }
+
+    public function update(Request $request, Worker $worker)
+    {
+        $request->merge([
+            'hourly_rate' => str_replace(',', '.', $request->input('hourly_rate')),
+        ]);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:workers,name,' . $worker->id,
+            'hourly_rate' => 'required|numeric|min:0|max:9999.99',
+        ], $this->messages());
+
+        $worker->update($validated);
+
+        return redirect()->route('workers.index')->with('success', 'Töömehe andmed muudetud.');
+    }
+
+    public function destroy(Worker $worker)
+    {
+        if ($worker->workEntries()->exists()) {
+            return redirect()->route('workers.edit', $worker)
+                ->with('error', 'Töömeest ei saa kustutada, sest temaga on seotud tehtud töid.');
+        }
+
+        $worker->delete();
+
+        return redirect()->route('workers.index')->with('success', 'Töömees kustutatud.');
+    }
+
+    private function messages(): array
+    {
+        return [
             'name.required' => 'Sisesta nimi.',
             'name.max' => 'Nimi on liiga pikk.',
             'name.unique' => 'Sellise nimega töömees on juba olemas.',
@@ -31,10 +73,6 @@ class WorkerController extends Controller
             'hourly_rate.numeric' => 'Tunnihind peab olema number, nt 25 või 25,50.',
             'hourly_rate.min' => 'Tunnihind ei saa olla negatiivne.',
             'hourly_rate.max' => 'Tunnihind on liiga suur.',
-        ]);
-
-        Worker::create($validated);
-
-        return redirect()->route('workers.index')->with('success', 'Töömees lisatud.');
+        ];
     }
 }
