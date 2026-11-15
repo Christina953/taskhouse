@@ -189,5 +189,5 @@ Planeerimise etapp:
 - **17.10.2026:** muutsin projekti ideed. Teen rakenduse üksikettevõtjast ehitajale, kes peab praegu eelarvet, tööaega ja kulusid Excelis. Põhjus: päris kasutaja ja päris probleem, saan temaga vesteldes teada tema vajadused ja küsida tagasisidet.
 - **29.10.2026:** vestluse põhjal ehitajaga selgusid peamised nõuded: alustada tegeliku töö ja kulude arvepidamisest, pakkumise koostamine tuleb hiljem; igal töömehel on oma tunnihind; eelarvet võrreldakse tegelike kuludega; esmatähtis on arvutivaade, kuna andmeid sisestatakse peamiselt arvutis.
 - **30.–31.10.2026:** täpsustasin rakenduse kasutamise loogikat ja koostasin MVP plaani. Avalehel on uue objekti lisamine ning käimasolevad ja lõpetatud objektid. Objektil on tellija nimi ning alguse ja lõpetamise kuupäev, et objektide ajalugu oleks lihtne vaadata. Töömeestel on oma leht tunnihindade haldamiseks ja objekti vaates on töömeeste kaupa kokkuvõte tasude arvestamiseks. Planeeritud tööde nimekiri on MVP-s valikuline ("kui aega jääb"). Käibemaksu eristamine ja kululiigid jäid MVP-st välja, et hoida rakendus ja sisestamine lihtsana.
-
+- **15.11.2026:** selgus vajadus töömeeste nn arhiveerimise järele. Lugu 14 lisatud backlogi, prioriteet pärast lugu 5. 
 Edaspidi lisan siia read, kui MVP plaan arenduse käigus muutub.
